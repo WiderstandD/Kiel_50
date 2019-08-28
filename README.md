@@ -1,2 +1,2 @@
 # Kiel_50
-BLDC sine wave controller for Arduino
+BLDC sine wave controller shield for Arduino
