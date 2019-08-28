@@ -1,6 +1,8 @@
 # Kiel_50
 Arduino UNO shield for sensorless three-phase BLDC motors. The "Kiel 50" shield comes with the main chip A4964 from "Allegro microsystems". This chip is All-in-one: the motor controller, N-Channel MOSFET driver, Voltage regulator, MCU watchdog. The abbility to programm this chip via SPI using Arduino makes it easy to use it for many projects. After configuration was uploaded to the controller and saved to the NVM it can run without Arduino as well.  
 
+![Board_1](/pictures/Kiel_50_H1.jpg)
+
 Communications: SPI 
 
 Speed control: via SPI or PWM
