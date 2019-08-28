@@ -5,6 +5,12 @@ Arduino UNO shield for sensorless three-phase BLDC motors. The "Kiel 50" shield 
 ![Board_2](/pictures/Kiel_50_H2.jpg)
 ![Board_3](/pictures/Kiel_50_Hbottom.jpg)
 
+#Measurement of the three-phase (Voltage)
+![Measurement1](oscillograms/1.png)
+
+#Measurment of the three-phase (Voltage + Current(GN))
+![Measurement2](oscillograms/2.png)
+
 Communications: SPI 
 
 Speed control: via SPI or PWM
