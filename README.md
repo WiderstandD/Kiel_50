@@ -1,4 +1,4 @@
-# Kiel_50
+# Kiel_50 			Introduction
 Arduino UNO shield for driving sensor-less three-phase BLDC motor. The main advantage is the sinusoidal current drive. By monitoring the back-EMF (BEMF) the motor can run without need for independent rotor position sensor aka hall sensor or encoder. The BEMF sensing is made from lowest up to highest RPM. The speed can be set and adjust using PWM or SPI. The Kiel 50 shield comes with the main chip A4964 from "Allegro MicroSystems". This chip is All-in-one: the motor controller, N-Channel MOSFET driver, voltage regulator, MCU watchdog. The ability to program this chip via SPI using Arduino makes it easy to use for many projects. After configuration was uploaded to the controller and saved to the NVM it can run without Arduino as well.
 
 ![Board_1](/pictures/Kiel_50_H1.jpg)
@@ -18,7 +18,6 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 - Arduino UNO
 - Power supply 5.5V - 50V with at least 1A (for small motors)
 - Main PC for programming
----
 ---
 ### Software for the first start
 - Arduino IDE
