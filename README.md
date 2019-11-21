@@ -24,6 +24,16 @@ Software you need to start:
 						- The Software for the Arduino UNO 
 ---
  
+
+### Tags
+
+- Components: Contains coded patterns and examples.
+- Voice & Tone: Provides guidance on how language should be used.
+- Designers Kit: Includes a Sketch/Photoshop/Figma/etc. file for designers.
+- Source code: Publically viewable source code
+
+---
+
 Let‘s start: After git clone the Project navigate to the main directory with source code. Open it with Arduino IDE and compile. If you get no errors, plug the Kiel 50 board.
 
 First turn: The Arduino UNO is connected to the Kiel 50. NO motor is connected to the Kiel 50 board. The Arduino UNO have ($test) sketch loaded.
