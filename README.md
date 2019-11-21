@@ -18,7 +18,7 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 - Arduino UNO
 - Power supply 5.5V - 50V with at least 1A (for small motors)
 - Main PC for programming
----
+
 ### Software for the first start
 - Arduino IDE
 - The Software for the Arduino UNO 
