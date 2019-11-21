@@ -11,7 +11,7 @@ Measurement of the three-phase (Voltage Ch.1,2,3)
 Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 ![Measurement2](oscillograms/3.PNG)
 
-
+---
 ### First step
 Hardware you need to start: 
 						- Kiel_50 board
@@ -22,6 +22,7 @@ Hardware you need to start:
 Software you need to start: 	
 						- Arduino IDE
 						- The Software for the Arduino UNO 
+---
  
 Let‘s start: After git clone the Project navigate to the main directory with source code. Open it with Arduino IDE and compile. If you get no errors, plug the Kiel 50 board.
 
