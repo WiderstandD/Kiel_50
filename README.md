@@ -11,18 +11,19 @@ Measurement of the three-phase (Voltage Ch.1,2,3)
 Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 ![Measurement2](oscillograms/3.PNG)
 
-
-# First step
-Hardware you need to start: 
-						1) Kiel_50 board
-						2) Three phase BLDC motor
-						3) Arduino UNO
-						4) Power supply 5.5V - 50V with at least 1A (for small motors)
-  						5) Main PC for programming
-Software you need to start: 	
-						1) Arduino IDE
-						2) The Software for the Arduino UNO 
- 
+---
+### Hardware for the first start
+- Kiel_50 board
+- Three phase BLDC motor
+- Arduino UNO
+- Power supply 5.5V - 50V with at least 1A (for small motors)
+- Main PC for programming
+---
+---
+### Software for the first start
+- Arduino IDE
+- The Software for the Arduino UNO 
+---
 Let‘s start: After git clone the Project navigate to the main directory with source code. Open it with Arduino IDE and compile. If you get no errors, plug the Kiel 50 board.
 
 First turn: The Arduino UNO is connected to the Kiel 50. NO motor is connected to the Kiel 50 board. The Arduino UNO have ($test) sketch loaded.
