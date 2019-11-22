@@ -66,12 +66,12 @@ Safety features: 0) Undervoltage lockout
 Programmable driving modes: 1) Closed-loop speed
 							2) Closed-loop current
 							3) Open-loop speed
----
+
 # Keywords:
--ESC - electric speed controller
--BLDC - Brushless DC electric motor
--PMSM - Permanent magnet synchronous motor
--DC - Direct current
--IDE - Integrated Development Environment
----
+ESC - electric speed controller
+BLDC - Brushless DC electric motor
+PMSM - Permanent magnet synchronous motor
+DC - Direct current
+IDE - Integrated Development Environment
+
 ## Notes:
