@@ -20,7 +20,7 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 |Logic voltage|VLR|REG 25 - VLR|3.3 - 5|V|
 |Maximal current|Imax|Fused: F2|10|A|
 |Maximal logic current|Ilog|Fused: F1|290|mA|
-|Gate drive regulator voltage|REG 25 - VRG|8 or 11|V|
+|Gate drive regulator voltage|Vrg|REG 25 - VRG|8 or 11|V|
 |Bridge PWM frequency|ƒpw|REG 0 - PW|14.2 - 50|Khz|
 |PWM frequency (logic)|ƒpwm||500-1000|Hz|
 |SPI frequency|ƒspi||2|Mhz|
