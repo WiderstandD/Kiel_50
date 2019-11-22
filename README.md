@@ -11,6 +11,43 @@ Measurement of the three-phase (Voltage Ch.1,2,3)
 Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 ![Measurement2](oscillograms/3.PNG)
 
+---
+
+## Technical specification
+|Characteristic|Symbol|Note|Raiting|Unit|
+| --- | --- | --- | --- | --- |
+|Supply voltage|Vsup| |5.5 - 50|V|
+|Logic voltage|VLR|REG 25 - VLR|3.3 - 5|V|
+|Maximal current|Imax|Fused: F2|10|A|
+|Maximal logic current|Ilog|Fused: F1|290|mA|
+|Gate drive regulator voltage|REG 25 - VRG|8 or 11|V|
+|Bridge PWM frequency|ƒpw|REG 0 - PW|14.2 - 50|Khz|
+|PWM frequency (logic)|ƒpwm||500-1000|Hz|
+|SPI frequency|ƒspi||2|Mhz|
+
+## Feachures
+|Driving modes
+
+## Safety features
+|Feature|Description|
+| --- | --- |
+|Undervoltage lockout|Controller can detect the voltgae drop and switsch the motor off. Thus avoiding the risk of unpredictible behavior|
+|Peak current limit|Can be programmed using the MCU. Uses shunt for monitoring the current.|
+|Ignition switch|The high-active input permitt the system start|
+|Bridge MOSFET test|The controller can detect if the driving MOSFETs are broken or have any issues.|
+|Windmill detection|If the motor rotetes, the controller can detect its speed and syncronise with it. Thus allowing further rotation without the braiking|  
+|MCU watchdog and reset||
+
+## Driving modes
+| Mode | Description |
+| --- | --- |
+| Closed-loop speed | Is used in many e-bike controllers. Acceleration, braking, reaction speed and others settings can be configured via SPI only. After the configuration was set, the speed input via SPI or PWM is acceptable. |
+| Closed-loop current | The configuration is done via SPI only. The speed can be adjusted using SPI or PWM | 
+| Open-loop speed | The motor starts in open-loop speed aka start ramp. |
+
+---
+
+
 # How to start
 ---
 ### Hardware for the first start
@@ -33,8 +70,6 @@ First turn: The Arduino UNO is connected to the Kiel 50. NO motor is connected t
 # Aplication design
 Aplication example: Free rotating motors, pump, fan.
 
-# Feachures
-|Driving modes
 
 Speed control: via SPI or PWM
 
@@ -42,30 +77,7 @@ Hardware design features:
    1. Min component size 0802 SMD for easy hand soldering.
    2. Radiator for the heat dissipation from the IC.
 
-# Technical specification
-|Characteristic|Symbol|Note|Raiting|Unit|
-| --- | --- | --- | --- | --- |
-|Supply voltage|Vsup| |5.5 - 50|V|
-|Logic voltage|VLR|REG 25 - VLR|3.3 - 5|V|
-|Maximal current|Imax|Fused: F2|10|A|
-|Maximal logic current|Ilog|Fused: F1|290|mA|
-|Gate drive regulator voltage|REG 25 - VRG|8 or 11|V|
-|Bridge PWM frequency|ƒpw|REG 0 - PW|14.2 - 50|Khz|
-|SPI frequency|ƒspi||2|Mhz|
 
-
-
-
-Safety features: 0) Undervoltage lockout
-				 1) Peak current limiting
-				 2) Ignition switch
-				 3) MCU watchdog and reset
-				 4) MOSFET test
-			 	 5) Diagnostics, status, current, and speed feedback
-
-Programmable driving modes: 1) Closed-loop speed
-							2) Closed-loop current
-							3) Open-loop speed
 ---
 ### Keywords:
 - ESC - electric speed controller
