@@ -43,9 +43,9 @@ Hardware design features:
    2. Radiator for the heat dissipation from the IC.
 
 # Technical specification
-|Characteristic|Symbol|Note|Raiting|Unit|
-| --- | --- |
-|Supply voltage|Vsup||5.5 - 50|V|
+|Characteristic|Symbol|Raiting|Unit|
+| --- | --- | --- | --- |
+|Supply voltage|Vsup|5.5 - 50|V|
 
 
 
