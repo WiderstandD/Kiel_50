@@ -1,5 +1,5 @@
 # Kiel_50 - Programmable ESC for the BLDC and PMSM Motors
-Kiel 50 is the Arduino UNO shield for driving sensor-less three-phase BLDC motor. The main advantage is the sinusoidal current drive. By monitoring the back-EMF (BEMF) the motor can run without the independent rotor position sensor aka hall sensor or encoder. The chip is able to sense the BEMF from very low rpm up to high rpm. The speed can be set and adjusted using PWM or SPI. The Kiel 50 shield comes with the main chip A4964 from "Allegro MicroSystems". This chip is All-in-one: the motor controller, N-Channel MOSFET driver, voltage regulator, MCU watchdog. The ability to program this chip via SPI using Arduino makes it easy to use for many projects. After configuration was uploaded to the controller and saved to the NVM it can run without Arduino as well.
+Kiel 50 is the Arduino UNO shield for driving sensor-less three-phase BLDC motor. The main advantage is the sinusoidal current drive. By monitoring the back-EMF (BEMF) the motor can run without the independent rotor position sensor aka hall sensor or encoder. The chip is able to sense the BEMF from very low rpm up to high rpm. The speed can be set and adjusted using PWM or SPI. The Kiel 50 shield comes with the main chip A4964 from "Allegro MicroSystems". This chip is All-in-one: the motor controller, N-Channel MOSFET driver, voltage regulator, MCU watchdog. The ability to program this chip via SPI using Arduino makes it easy to use for many projects. After the configurations were uploaded to the controller and saved to the NVM it can run without Arduino as well.
 
 ![Board_1](/pictures/Kiel_50_H1.jpg)
 ![Board_3](/pictures/Kiel_50_Hbottom.jpg)
@@ -34,7 +34,7 @@ First turn: The Arduino UNO is connected to the Kiel 50. NO motor is connected t
 Aplication example: Free rotating motors, pump, fan.
 
 # Feachures
-Communications: SPI, LIN 
+|Driving modes
 
 Speed control: via SPI or PWM
 
@@ -43,28 +43,35 @@ Hardware design features:
    2. Radiator for the heat dissipation from the IC.
 
 # Technical specification
-|Characteristic|Symbol|Raiting|Unit|
-| --- | --- | --- | --- |
-|Supply voltage|Vsup|5.5 - 50|V|
+|Characteristic|Symbol|Note|Raiting|Unit|
+| --- | --- | --- | --- | --- |
+|Supply voltage|Vsup| |5.5 - 50|V|
+|Logic voltage|VLR|REG 25 - VLR|3.3 - 5|V|
+|Maximal current|Imax|Fused: F2|10|A|
+|Maximal logic current|Ilog|Fused: F1|290|mA|
+|Gate drive regulator voltage|REG 25 - VRG|8 or 11|V|
+|Bridge PWM frequency|ƒpw|REG 0 - PW|14.2 - 50|Khz|
+|SPI frequency|ƒspi||2|Mhz|
 
 
 
 
 Safety features: 0) Undervoltage lockout
-				1) Peak current limiting
+				 1) Peak current limiting
 				 2) Ignition switch
 				 3) MCU watchdog and reset
-			 	 4) Diagnostics, status, current, and speed feedback
+				 4) MOSFET test
+			 	 5) Diagnostics, status, current, and speed feedback
 
 Programmable driving modes: 1) Closed-loop speed
 							2) Closed-loop current
 							3) Open-loop speed
 
 # Keywords:
-ESC - electric speed controller
-BLDC - Brushless DC electric motor
-PMSM - Permanent magnet synchronous motor
-DC - Direct current
-IDE - Integrated Development Environment
+-ESC - electric speed controller
+-BLDC - Brushless DC electric motor
+-PMSM - Permanent magnet synchronous motor
+-DC - Direct current
+-IDE - Integrated Development Environment
 
 ## Notes:
