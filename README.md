@@ -22,11 +22,8 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 |Maximal logic current|Ilog|Fused: F1|290|mA|
 |Gate drive regulator voltage|Vrg|REG 25 - VRG|8 or 11|V|
 |Bridge PWM frequency|ƒpw|REG 0 - PW|14.2 - 50|Khz|
-|PWM frequency (logic)|ƒpwm||500-1000|Hz|
+|PWM frequency (logic)|ƒpwm||500 - 1000|Hz|
 |SPI frequency|ƒspi||2|Mhz|
-
-## Feachures
-|Driving modes
 
 ## Safety features
 |Feature|Description|
@@ -47,9 +44,8 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 
 ---
 
-
 # How to start
----
+
 ### Hardware for the first start
 - Kiel_50 board
 - Three phase BLDC motor
@@ -60,23 +56,17 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 ### Software for the first start
 - Arduino IDE
 - The Software for the Arduino UNO 
----
-First git clone the repository and 
 
-Let‘s start: After git clone the Project navigate to the main directory with source code. Open it with Arduino IDE and compile. If you get no errors, plug the Kiel 50 board.
-
-First turn: The Arduino UNO is connected to the Kiel 50. NO motor is connected to the Kiel 50 board. The Arduino UNO have ($test) sketch loaded.
-
-# Aplication design
-Aplication example: Free rotating motors, pump, fan.
-
-
-Speed control: via SPI or PWM
-
-Hardware design features: 
-   1. Min component size 0802 SMD for easy hand soldering.
-   2. Radiator for the heat dissipation from the IC.
-
+### Folow this tutorial
+1. First git clone the repository or download it to the main PC.
+2. Navigate to the folder Kiel_50.
+3. Open /Kiel_50/Software/chip_test/chip_test_programm.ino file in Arduino IDE.
+4. Select Arduoino UNO in the Borard manger and compile the chip_test_programm.ino.
+5. By setting all switches on SW_DIP_x04(BLUE) to ON you enable the SPI communication with Arduino UNO.
+6. Plug the Kiel 50 shield to Arduino UNO.
+7. Flash Arduino UNO.
+8. Connect the power supply to the board.
+9. Open the sirial monitor, now you can monitor the supply voltage, chip temperatur, current
 
 ---
 ### Keywords:
@@ -87,4 +77,12 @@ Hardware design features:
 - IDE - Integrated Development Environment
 ---
 
-## Notes:
+# Notes:
+#### Aplication example: 
+1. Free rotating motors
+2. Pump 
+3. Fans and blowers
+
+#### Hardware design features: 
+1. Min component size 0802 SMD for easy hand soldering.
+2. Radiator for the heat dissipation from the IC.
