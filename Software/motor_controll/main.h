@@ -13,11 +13,10 @@ float yyy;
 unsigned long pwm1;
 // Value read from A0 and A2 to give PWM duty cycle output in terms // of 0-5V
 unsigned long pwm2;
-/////////REGISTER MODE SELECTION //////
 
+/////////REGISTER MODE SELECTION //////
 const uint16_t SPI_WRITE (1 << 10);
 const uint16_t SPI_READ (0 << 10);
-
 /////////REGISTER MODE SELECTION END////
 
 ///////////REGISTER ADDRES//////////////
@@ -114,7 +113,6 @@ uint16_t RBS_SEL_DUTY_CYC = 0xC;
 uint16_t RBS_SEL_PHASE_ADVC = 0xE;
 
 uint16_t RBS_SEL_DIAG_VOLT = 0x206;
-//////////////////////////////////////////
 ///////Regifine the DEF val in bin ///////
 uint16_t DEC_PWM_CONF_0_DEF = 0b0011001100; //PWM 19.8Khz
 uint16_t DEC_PWM_CONF_1_DEF = 0b0000000000; //Disable the PWM Dither
