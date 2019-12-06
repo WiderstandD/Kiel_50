@@ -1,4 +1,4 @@
-// The serial register table for A4964
+// The serial register table for the Kiel_50
 
 // 0.PWM config 
 const uint16_t MOD_3                  (0b0 << 9);      // Modulation Mode 3-Phase BLDC
@@ -368,4 +368,3 @@ const uint16_t DIR_REVERSE            (0b1 << 2);
 
 const uint16_t RUN_OFF_COAST          (0b0 << 1);
 const uint16_t RUN_ON                 (0b1 << 1);
-// 28. MASK

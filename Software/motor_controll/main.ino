@@ -1,10 +1,25 @@
-// sketch0_apr07a
-// Erleuterung in Ccccccccccccc cs 1.6
+/*
+ * Author: Mark Gajevskis
+ * Date: 9 March 2019
+ * Board: Arduino UNO
+ * Chip: A4964
+ * Communication protocol: 4-wire HW SPI
+ * Logic voltage: 5V
+ * Logic voltage shiftig: NO
+ * USART baudrate: 115200
+ * 
+ * 
+ * 
+ * This code write the "Register Select" in 
+ * order to set the register 31 in Read Only 
+ * mode. The data is send to the host pc via UART.
+ * 
+ * 
+ */
 
 #include "Arduino.h"
-//#include "Motor.h"
-#include "SPI.h"
 #include "main.h"
+#include "SPI.h"
 #include "motor_settings.h"
 
 
@@ -62,7 +77,6 @@ void temperature() {
 
   Serial.print("Temperature: ");
   Serial.println((367.7 - ((rdng_temp & 0b11111111110) >> 1) * 0.451), 2); // Refer to A4964 manual page 77
-
 }
 
 void showspeed() {
@@ -76,22 +90,17 @@ void showspeed() {
   digitalWrite(PIN_CS, LOW);
   rdng_speed = SPI.transfer16(REG_RD_ONLY);  // Read the register 31
   digitalWrite(PIN_CS, HIGH);
-  //uint16_t shifted = ((rdng_speed& 0b11111111110)>>1);
 
   Serial.print("Speed (rpm): ");
   Serial.println((((((rdng_speed & 0b11111111110) >> 1) * 1.6) * 60) / 7), 4); // Refer to A4964 manual page 77
-  //Serial.println(shifted, DEC);
 
   SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, SPI_MODE3)); // Start SPI dialog with settings for A4964
   digitalWrite(PIN_CS, LOW);
   rdng_speed = SPI.transfer16(REG_RD_ONLY);  // Read the register 31
   digitalWrite(PIN_CS, HIGH);
-  //uint16_t shifted = ((rdng_speed& 0b11111111110)>>1);
 
   Serial.print("Speed (Hz): ");
   Serial.println((((rdng_speed & 0b11111111110) >> 1) * 1.6), 4); // Refer to A4964 manual page 77
-  //Serial.println(shifted, DEC);
-
 }
 
 void duty_cycle() {
@@ -107,7 +116,6 @@ void duty_cycle() {
   digitalWrite(PIN_CS, HIGH);
   Serial.print("Peak Duty Cycle: ");
   Serial.println((((rdng_duty_cycle & 0b11111111110) >> 1) / 1023) * 100, 3);
-
 }
 
 void applied_phase_advance() {
@@ -123,7 +131,6 @@ void applied_phase_advance() {
   digitalWrite(PIN_CS, HIGH);
   Serial.print("Applied Phase Advance: ");
   Serial.println(((rdng_phase_adv & 0b11111111110) >> 1) * 0.7, 3);
-
 }
 
 void voltage() {
@@ -139,7 +146,6 @@ void voltage() {
   digitalWrite(PIN_CS, HIGH);
   Serial.print("Voltage: ");
   Serial.println(((rdng_volt & 0b11111111110) >> 1) * 0.0528, 3);
-
 }
 
 void current() {
@@ -154,21 +160,8 @@ void current() {
   rdng_current = SPI.transfer16(REG_RD_ONLY);  // Read the register 31
   digitalWrite(PIN_CS, HIGH);
   Serial.print("Current: ");
-  Serial.println(((((rdng_current & 0b11111111110) >> 1) / 50) * 1, 76), 3);
-
+  Serial.println(((((rdng_current & 0b11111111110) >> 1) / 50) * 1.76), 3);
 }
-
-/*
-uint16_t speedref() {
-  int poti_0 = analogRead(A0);
-
-  uint16_t cloopspeed = map(poti_0, 0, 1023, 2, 2046);
-  uint16_t shift = (0 << 0);
-  uint16_t regadd = (ADDR_WRT_ONLY | cloopspeed);
-  regadd == (regadd | shift);
-  uint16_t count = countSetBits(regadd);
-
-}*/
 
 void writeregisters() {
 
@@ -197,49 +190,13 @@ void writeregisters() {
   dialup(ADDR_SPEED_LOOP_0, SGL_ACCELER_LIM(0b00111) | SG_GAIN(0b1000));
   dialup(ADDR_SPEED_LOOP_1, DV_CYCLE_COMP_OFF | DF_DECEL_FACTOR_1 | SR_SPEED_CTRL_RES_0_1);
   dialup(ADDR_SPEED_LOOP_2, SL_LOW_THRESHOLD(0b0001) | SH_HIGH_THRESHOLD(0b1100));
-
   dialup(ADDR_SYS, ESF_NO_STOP_ON_FAIL | VLR_LOGIC_V_5 | VRG_GATE_V_8 | OPM_STAND_ALONE | LWK_PWM_WAKE_MDOE | IPI_ACT_LOW | DIL_I_LIM_OFF | CM_CLOSED_LOOP_SPEED_2); // REG Nr. 25
   dialup(ADDR_PHA_ADV, PAM_PHASE_ADV_AUTO | KIP_AUTO_PHASE_CTRL_4);
   dialup(ADDR_MOT_FUN, LEN_LIN_STANDBY | GTS_NO_CHANGE_0 | OVM_OVERMOD_OFF | DRM_MODE_SINE | BRK_ON | DIR_REVERSE | RUN_ON);
-
-}
-
-void bitbanging() {
-
-  dialup(ADDR_PWM_CONF_0, PWM_CONF_0_DEF);
-  dialup(ADDR_PWM_CONF_1, PWM_CONF_1_DEF);
-  dialup(ADDR_BRGE_CONF, BRGE_CONF_DEF);
-  dialup(ADDR_GATE_DRV_CONF_0, GATE_DRV_CONF_0_DEF);
-  dialup(ADDR_GATE_DRV_CONF_1, GATE_DRV_CONF_1_DEF);
-  dialup(ADDR_GATE_DRV_CONF_2, GATE_DRV_CONF_2_DEF);
-  dialup(ADDR_I_LIM_CONF, I_LIM_CONF_DEF);
-  dialup(ADDR_VDS_0, VDS_0_DEF);
-  dialup(ADDR_VDS_1, VDS_1_DEF);
-  dialup(ADDR_WATCH_DOG_0, WATCH_DOG_0_DEF);
-  dialup(ADDR_WATCH_DOG_1, WATCH_DOG_1_DEF);
-  dialup(ADDR_COMMT_0, COMMT_0_DEF);
-  dialup(ADDR_COMMT_1, COMMT_1_DEF);
-  dialup(ADDR_BEMF_CONF_0, BEMF_CONF_0_DEF);
-  dialup(ADDR_BEMF_CONF_1, BEMF_CONF_1_DEF);
-  dialup(ADDR_STR_CONF_0, STR_CONF_0_DEF);
-  dialup(ADDR_STR_CONF_1, STR_CONF_1_DEF);
-  dialup(ADDR_STR_CONF_2, STR_CONF_2_DEF);
-  dialup(ADDR_STR_CONF_3, STR_CONF_3_DEF);
-  dialup(ADDR_STR_CONF_4, STR_CONF_4_DEF);
-  dialup(ADDR_STR_CONF_5, STR_CONF_5_DEF);
-  dialup(ADDR_SPEED_LOOP_0, SPEED_LOOP_0_DEF);
-  dialup(ADDR_SPEED_LOOP_1, SPEED_LOOP_1_DEF);
-  dialup(ADDR_SPEED_LOOP_2, SPEED_LOOP_2_DEF);
-  dialup(ADDR_SYS, SYS_DEF);
-  dialup(ADDR_PHA_ADV, PHA_ADV_DEF);
-  dialup(ADDR_MOT_FUN, MOT_FUN_DEF);
-
-  dialup(ADDR_WRT_ONLY, WRT_ONLY_DEF);
-
 }
 
 void speedreference(){
-  // To do: Read ADC from potentiometer, convert the value to 9 bit value (use map() func)
+
   const int analogPin = A0;
   uint16_t A0_val = 0;
   uint16_t A0_conv = 0;
@@ -274,7 +231,6 @@ void speedreference(){
     SPI.transfer16(foo);
     digitalWrite(PIN_CS, HIGH);
   }
-  
 }
 
 
@@ -282,29 +238,11 @@ void setup() {
 
   SPI.begin();
   pinMode(PIN_CS, OUTPUT);
-  // put your setup code here, to run once:
+
   Serial.begin(115200);
   delay(100);
 
-  Serial.print("Pass the setup sequence ");
-  Serial.println("");
-  //bitbanging();
-  Serial.println("Made the bit banging");
-  //bitbanging();
-
   writeregisters();
-
-  //setspeedloop();
-
-  //For pwm
-  pinMode(9, OUTPUT);
-  //pinMode(10, OUTPUT);
-  TCCR1A = _BV(COM1A1) | _BV(COM1B1) ; // phase and frequency correct mode. NON-inverted mode
-  // TCCR1A = _BV(COM1A1) | _BV(COM1B1) | _BV(COM1A0) | _BV(COM1B0) ;
-  //phase/frequency correct mode. SELECT THIS FOR INVERTED OUTPUTS.
-  TCCR1B = _BV(WGM13) | _BV(CS11);
-  // Select mode 8 and select divide by 8 on main clock.
-
 }
 
 void loop() {
@@ -315,28 +253,7 @@ void loop() {
   showspeed();
   duty_cycle();
   applied_phase_advance();
-  Serial.println("");
-  //speedreference();
-  //Serial.println();
+  speedreference();
+  Serial.println();
   delay(200);
-
-  /*
-    //PWM in loop
-    ICR1 = 1000; // for ICR1 = 1000, frequency = 1kHz.
-    pwm1 = analogRead(A2); // read duty from A2 for PWM 2
-    //pwm2 = analogRead(A0); // read duty from A0 for PWM 1
-    xxx = float(pwm2);
-    // Turn read values from the POTs to float for mathematical
-    // adjustment.
-    yyy = float(pwm1);
-    xxx = xxx * ICR1;
-    // Multiply with ICR1 and divide by 1023 to give required percentage
-    yyy = yyy * ICR1;
-    xxx = xxx / 1023;
-    yyy = yyy / 1023;
-    //Assign values to OCR Registers, which output the PWM duty cycle.
-    OCR1B = int(xxx);
-    OCR1A = int(yyy);
-  */
-
 }

@@ -1,5 +1,5 @@
 # Kiel_50 - Programmable ESC for the BLDC and PMSM Motors
-Kiel 50 is the Arduino UNO shield for driving sensor-less three-phase BLDC motor. The main advantage is the sinusoidal current drive. By monitoring the back-EMF (BEMF) the motor can run without the independent rotor position sensor aka hall sensor or encoder. The chip is able to sense the BEMF from very low rpm up to high rpm. The speed can be set and adjusted using PWM or SPI. The Kiel 50 shield comes with the main chip [A4964](https://www.allegromicro.com/en/Products/Motor-Drivers/BLDC-Drivers/A4964) from "Allegro MicroSystems". This chip is All-in-one: the motor controller, N-Channel MOSFET driver, voltage regulator, MCU watchdog. The ability to program this chip via SPI using Arduino makes it easy to use for many projects. After the configurations were uploaded to the controller and saved to the NVM it can run without Arduino as well.
+Kiel 50 is an Arduino UNO shield for driving sensor-less three-phase BLDC motor. The main advantage is the sinusoidal current drive. By monitoring the back-EMF (BEMF) the motor can run without the independent rotor position sensor aka hall sensor or encoder. The chip is able to sense the BEMF from very low rpm up to high rpm. The speed can be set and adjusted using PWM or SPI. The Kiel 50 shield comes with the main chip [A4964](https://www.allegromicro.com/en/Products/Motor-Drivers/BLDC-Drivers/A4964) from "Allegro MicroSystems". This chip is All-in-one: the motor controller, N-Channel MOSFET driver, voltage regulator, MCU watchdog. The ability to program this chip via SPI using Arduino makes it easy to use for many projects. After the configurations were uploaded to the controller and saved to the NVM it can run without Arduino as well.
 
 ![Board_1](/pictures/Kiel_50_H1.jpg)
 ![Board_3](/pictures/Kiel_50_Hbottom.jpg)
@@ -42,6 +42,9 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 | Closed-loop current | The configuration is done via SPI only. The speed can be adjusted using SPI or PWM | 
 | Open-loop speed | The motor starts in open-loop speed aka start ramp. |
 
+#### Hardware design features: 
+1. Min component size 0802 SMD for easy hand soldering.
+2. Radiator for the heat dissipation from the IC.
 ---
 
 # How to start
@@ -57,16 +60,20 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 - Arduino IDE
 - The Software for the Arduino UNO 
 
-### Folow this tutorial
+### Before start, test the board
 1. First git clone the repository or download it to the main PC.
-2. Navigate to the folder Kiel_50.
+2. Navigate to the Kiel_50 folder.
 3. Open /Kiel_50/Software/chip_test/chip_test_programm.ino file in Arduino IDE.
 4. Select Arduoino UNO in the Borard manger and compile the chip_test_programm.ino.
 5. By setting all switches on SW_DIP_x04(BLUE) to ON you enable the SPI communication with Arduino UNO.
 6. Plug the Kiel 50 shield to Arduino UNO.
 7. Flash Arduino UNO.
-8. Connect the power supply to the board.
-9. Open the sirial monitor, now you can monitor the supply voltage, chip temperatur, current
+8. Connect the power supply to the board, avoid connectong the motor to the board.
+9. Open the serial monitor, now you can monitor the supply voltage, chip temperatur, etc.
+10. You can try to change the supply voltage (if it's possible). You have to see the voltage change in serial. 
+
+### Frirst start
+//ToDo 
 
 ---
 ### Keywords:
@@ -83,6 +90,3 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 2. Pump 
 3. Fans and blowers
 
-#### Hardware design features: 
-1. Min component size 0802 SMD for easy hand soldering.
-2. Radiator for the heat dissipation from the IC.

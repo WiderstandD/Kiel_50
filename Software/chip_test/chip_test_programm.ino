@@ -20,6 +20,7 @@
 
 #include <SPI.h>
 
+
 // Definition of the 29:Readback Select registers as a complete write command. 
 #define REG_RBS_AMP ((uint16_t) 0b1110110000000101)   // RBS[2:0] [ 010 ] Avr. supply current
 #define REG_RBS_VOLT ((uint16_t)0b1110110000000110) // RBS[2:0] [ 011 ] Supply Voltage
@@ -30,9 +31,7 @@
 #define REG_OPM_1 ((uint16_t) 0b1100111111000001)  // REG_25_SYS_OPM
 // Definition of the 31: Read Only regiter 
 #define REG_RD_ONLY ((uint16_t) 0b1111100000000000) // First 15-11 bits are adress 10-0 value in bin
-
 #define REG_RBS0_DIAG ((uint16_t) 0b1110110000000001)  //Definitioin of the Redback Select REG for DIAG output 
-
 // Definition of the SPI HW
 #define PIN_CS 10
 #define SPI_SPEED 20000
@@ -48,27 +47,6 @@ uint16_t rdng_mspeed;
 uint16_t rdng_diag;
 
 // ____________VARIABLES END____________
-
-
-void setup() {
-
-  Serial.begin(9600);
-  SPI.begin();
-  pinMode(PIN_CS, OUTPUT);
-  
-}
-
-void loop() { 
-  set_OPM_1();
-  voltage();
-  motor_speed();
-  temperature();
-  applied_phase_advance();
-  diagnostics();
-  Serial.println("///////////////////////////////////////////");
-  
-}
-
 
 void voltage(){
 // This function prints out voltage value (VDD) in serial
@@ -87,7 +65,6 @@ void voltage(){
   Serial.println(" ");
   Serial.print("Voltage: ");
   Serial.println(((rdng_volt & 0b11111111110)>>1)*0.0528, 2);  // Refer to A4964 manual page 77
-  
 }
 
 void temperature(){
@@ -107,13 +84,6 @@ void temperature(){
   Serial.println(" ");
   Serial.print("Temperature: ");
   Serial.println((367.7 - ((rdng_temp & 0b11111111110)>>1)*0.451), 2);  // Refer to A4964 manual page 77
-  
-}
-
-void current(){
-
-
-  
 }
 
 void applied_phase_advance(){
@@ -133,7 +103,6 @@ void applied_phase_advance(){
   Serial.println(" ");
   Serial.print("Applied phase advance: ");
   Serial.println(((rdng_apadv& 0b11111111110)>>1)/1023);  // Refer to A4964 manual page 77
-
 }
 
 void motor_speed(){
@@ -153,7 +122,6 @@ void motor_speed(){
   Serial.println(" ");
   Serial.print("Motor speed: ");
   Serial.println((rdng_mspeed& 0b11111111110)>>1);  // Refer to A4964 manual page 77
-  
 }
 
 void diagnostics(){
@@ -173,7 +141,6 @@ void diagnostics(){
   Serial.println(" ");
   Serial.print("DIAG_OUTPUT: ");
   Serial.println(rdng_diag, BIN); 
-  
 }
 
 void set_OPM_1(){
@@ -182,5 +149,21 @@ void set_OPM_1(){
   digitalWrite(PIN_CS, LOW);
   SPI.transfer16(REG_OPM_1);
   digitalWrite(PIN_CS, HIGH);
-  
+}
+
+void setup() {
+
+  Serial.begin(9600);
+  SPI.begin();
+  pinMode(PIN_CS, OUTPUT);
+}
+
+void loop() { 
+  set_OPM_1();
+  voltage();
+  motor_speed();
+  temperature();
+  applied_phase_advance();
+  diagnostics();
+  Serial.println("///////////////////////////////////////////");
 }
