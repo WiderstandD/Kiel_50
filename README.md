@@ -13,7 +13,7 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 
 ---
 
-## Technical specification
+# Technical specification
 |Characteristic|Symbol|Note|Raiting|Unit|
 | --- | --- | --- | --- | --- |
 |Supply voltage|Vsup| |5.5 - 50|V|
@@ -25,7 +25,7 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 |PWM frequency (logic)|ƒpwm||500 - 1000|Hz|
 |SPI frequency|ƒspi||2|Mhz|
 
-## Safety features
+# Safety features
 |Feature|Description|
 | --- | --- |
 |Undervoltage lockout|Controller can detect the voltgae drop and switsch the motor off. Thus avoiding the risk of unpredictible behavior|
@@ -35,7 +35,7 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 |Windmill detection|If the motor rotetes, the controller can detect its speed and syncronise with it. Thus allowing further rotation without the braiking|  
 |MCU watchdog and reset||
 
-## Driving modes
+# Driving modes
 | Mode | Description |
 | --- | --- |
 | Closed-loop speed | Is used in many e-bike controllers. Acceleration, braking, reaction speed and others settings can be configured via SPI only. After the configuration was set, the speed input via SPI or PWM is acceptable. |
@@ -76,7 +76,7 @@ Measurment of the three-phase (Voltage Ch.1,2,3 + Current Ch.4 (GN))
 //ToDo 
 
 ---
-### Keywords:
+# Keywords:
 - ESC - electric speed controller
 - BLDC - Brushless DC electric motor
 - PMSM - Permanent magnet synchronous motor
